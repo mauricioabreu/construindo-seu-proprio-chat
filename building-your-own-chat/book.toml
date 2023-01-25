@@ -1,0 +1,6 @@
+[book]
+authors = ["Maurício Antunes"]
+language = "pt-BR"
+multilingual = false
+src = "src"
+title = "Construindo seu próprio chat"
