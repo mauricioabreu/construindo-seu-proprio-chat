@@ -83,7 +83,7 @@ server, err := net.Listen("tcp", addr)
 
 Você já ouviu alguém falar a frase "o servidor está escutando"?
 
-<img alt="Cliente conectando em um servidor" src="img/client_server.svg" />
+<img alt="Cliente conectando em um servidor" src="img/client_server.png" />
 
 Um servidor escuta em uma porta, e isso significa que ele está pronto para receber conexões nela. Quando um cliente faz uma requisição para iniciar uma conversa com aquele servidor, uma conexão é aberta. O servidor fica ativamente esperando requisições até que o programa ou o servidor pare de responder.
 
