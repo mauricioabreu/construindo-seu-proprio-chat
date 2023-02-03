@@ -83,7 +83,7 @@ server, err := net.Listen("tcp", addr)
 
 Você já ouviu alguém falar a frase "o servidor está escutando"?
 
-<img alt="Cliente conectando em um servidor" src="img/client_server.png" />
+<img alt="Cliente conectando em um servidor 192.168.0.1:80" src="img/client_server.png" />
 
 Um servidor escuta em uma porta, e isso significa que ele está pronto para receber conexões nela. Quando um cliente faz uma requisição para iniciar uma conversa com aquele servidor, uma conexão é aberta. O servidor fica ativamente esperando requisições até que o programa ou o servidor pare de responder.
 
@@ -96,3 +96,18 @@ A próxima parte do código tem um loop. O loop é necessário para que entremos
 A funcão `Accept` bloqueia a execução do código esperando novas conexões. Mas se o programa é bloqueado, como um servidor consegue gerenciar tantas conexões ao mesmo tempo?
 
 O comportamento que é bloqueante é apenas a espera de uma nova conexão, não o que será realizado com essa conexão. Para que cada conexão seja tratada de forma concorrente, usamos uma corrotina em go, as goroutines, para gerenciar cada conexão separadamente.
+
+```go
+go func(conn net.Conn) {
+    defer conn.Close()
+    io.Copy(conn, conn)
+}(conn)
+```
+
+O código acima é importante por dois motivos: lidar com a conexão em uma corrotina e escrever na conexão a própria mensagem enviada, proporcionando o comportamento de _eco_.
+
+Em go, a palavra reservada `go` executa a função (anônima ou não) seguinte em uma corrotina.
+
+E a chamada da função `Copy` do pacote `io` tem o seguinte comportamente: copiar os bytes da origem até o destino até que [EOF](https://pt.wikipedia.org/wiki/EOF) aconteça na origem ou algum erro em ambas as pontas da conexão. Retorna o número de bytes copiados e um erro que pode ser `nil` caso nenhum problema tenha acontecido.
+
+Observe que copiamos da origem `conn` até o destino `conn`, que significa que estamos lendo o input da origem e escrevendo na origem da conexão.
