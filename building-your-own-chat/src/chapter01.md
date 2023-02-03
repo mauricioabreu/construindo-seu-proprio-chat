@@ -86,3 +86,13 @@ Você já ouviu alguém falar a frase "o servidor está escutando"?
 <img alt="Cliente conectando em um servidor" src="img/client_server.svg" />
 
 Um servidor escuta em uma porta, e isso significa que ele está pronto para receber conexões nela. Quando um cliente faz uma requisição para iniciar uma conversa com aquele servidor, uma conexão é aberta. O servidor fica ativamente esperando requisições até que o programa ou o servidor pare de responder.
+
+> Nos próximos capítulos explicaremos com mais detalhes como essa comunicação com sockets funcionam, dando exemplos de códigos e explicando.
+
+Essa linha `defer server.Close()` é relacionada diretamente com a feature _defer_  do go, que uma garante a execução da função em questão, logo antes de retornar.
+
+A próxima parte do código tem um loop. O loop é necessário para que entremos em um estado que nos permite continuar aceitando conexões, quase como se o servidor fosse recepcionista de um hotel, que tem o trabalho de receber hóspedes e direcionar para seus quartos.
+
+A funcão `Accept` bloqueia a execução do código esperando novas conexões. Mas se o programa é bloqueado, como um servidor consegue gerenciar tantas conexões ao mesmo tempo?
+
+O comportamento que é bloqueante é apenas a espera de uma nova conexão, não o que será realizado com essa conexão. Para que cada conexão seja tratada de forma concorrente, usamos uma corrotina em go, as goroutines, para gerenciar cada conexão separadamente.
