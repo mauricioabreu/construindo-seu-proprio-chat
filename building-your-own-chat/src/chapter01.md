@@ -12,6 +12,10 @@ Um servidor é um programa de computador que providencia e recebe informações 
 
 Clientes são ferramentas usadas para conectar e trocar informações com os serviços oferecidos por servidores. Um cliente pode ser tanto um aplicativo, um navegador, ou a ferramenta _curl_. Ambas ferramentas sabem como conectar em uma página web, por exemplo, seguindo o protocolo HTTP.
 
+Servidores também podem se tornar clientes. Ser cliente ou servidor está mais para um estado do que uma característica explícita.
+
+> Um proxy reverso, por exemplo, é um servidor e cliente ao mesmo tempo, pois recebe as requisições de clientes e repassa para outros servidores, agindo como cliente.
+
 ## Programando nosso servidor
 
 Vamos começar a ter nossos primeiros exemplos de código. Certifique-se de que você tem o _go_ instalado na sua máquina, que você sabe como escrever e executar simples programas em _go_.
