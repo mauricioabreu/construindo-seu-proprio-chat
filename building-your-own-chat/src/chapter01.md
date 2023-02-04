@@ -111,3 +111,7 @@ Em go, a palavra reservada `go` executa a função (anônima ou não) seguinte e
 E a chamada da função `Copy` do pacote `io` tem o seguinte comportamente: copiar os bytes da origem até o destino até que [EOF](https://pt.wikipedia.org/wiki/EOF) aconteça na origem ou algum erro em ambas as pontas da conexão. Retorna o número de bytes copiados e um erro que pode ser `nil` caso nenhum problema tenha acontecido.
 
 Observe que copiamos da origem `conn` até o destino `conn`, que significa que estamos lendo o input da origem e escrevendo na origem da conexão.
+
+## Resumo
+
+Esse foi nosso primeiro capítulo e de caratér introdutório. Nos próximos capítulos vamos falar com mais detalhes como funciona a conversação entre dois computadores por uma rede, desde conceito de redes até protocolos e como sistemas operacionais lidam com conexões.
