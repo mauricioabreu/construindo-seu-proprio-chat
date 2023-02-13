@@ -93,7 +93,7 @@ Um servidor escuta em uma porta, e isso significa que ele está pronto para rece
 
 > Nos próximos capítulos explicaremos com mais detalhes como essa comunicação com sockets funcionam, dando exemplos de códigos e explicando.
 
-A linha `defer server.Close()` é relacionada diretamente com a feature _defer_ do go, que garante a chamada da função em questão, logo antes da função terminar de executar.
+A linha `defer server.Close()` é relacionada diretamente com a feature _defer_ do go, que garante a chamada da função em questão, logo antes da função terminar de executar, exceto quando a função sofre um _panic_.
 
 A próxima parte do código tem um loop. O loop é necessário para que entremos em um estado que nos permite continuar aceitando conexões, quase como se o servidor fosse recepcionista de um hotel, que tem o trabalho de receber hóspedes e direcionar para seus quartos.
 
